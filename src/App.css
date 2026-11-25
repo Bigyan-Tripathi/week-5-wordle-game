@@ -1,0 +1,358 @@
+/* ---------- Page ---------- */
+.app {
+  text-align: center;
+}
+
+/* Masthead: ink rule underneath, like a little newspaper header. */
+.app-header {
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #2b2622;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.7rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  color: #2b2622;
+}
+
+/* Small label above the masthead, like the "week 5" on a worksheet. */
+.kicker {
+  display: inline-block;
+  margin-bottom: 2px;
+  padding: 2px 8px;
+  border: 1px solid #c9973f;
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: #a87c2a;
+}
+
+.tagline {
+  margin: 4px 0 0;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #7a7165;
+}
+
+/* ---------- Face ---------- */
+.face-slot {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.face {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  color: #8f8578;
+}
+
+/* Each mood gets its own ink colour. */
+.face.good   { color: #a87c2a; }
+.face.better { color: #a87c2a; }
+.face.best   { color: #5b7f5e; animation: hop 0.45s ease-out; }
+
+.face-frame {
+  grid-area: 1 / 1;
+  margin: 0;
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  letter-spacing: 0.1em;
+}
+
+/* Two frames per face: the second one shows briefly, like a blink. */
+.face-frame:first-of-type {
+  animation: blinkA 3.4s steps(1) infinite;
+}
+
+.face-frame:last-of-type {
+  animation: blinkB 3.4s steps(1) infinite;
+}
+
+.face-label {
+  grid-row: 2;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: inherit;
+  opacity: 0.85;
+}
+
+@keyframes blinkA {
+  0%, 93%   { opacity: 1; }
+  94%, 100% { opacity: 0; }
+}
+
+@keyframes blinkB {
+  0%, 93%   { opacity: 0; }
+  94%, 100% { opacity: 1; }
+}
+
+@keyframes hop {
+  0%   { transform: translateY(4px); }
+  100% { transform: translateY(0); }
+}
+
+/* ---------- Board ---------- */
+.board {
+  display: grid;
+  gap: 6px;
+  margin: 0 auto 22px;
+  width: fit-content;
+}
+
+.row {
+  display: flex;
+  gap: 6px;
+}
+
+/* Paper tiles with a thin ink border. */
+.tile {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #2b2622;
+  background: #fbf7ee;
+  border: 1.5px solid #c9bfae;
+  border-radius: 4px;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+/* Typed but not submitted yet: darker ink, like a real press. */
+.tile:not(:empty) {
+  background: #fffdf7;
+  border-color: #2b2622;
+  box-shadow: 2px 2px 0 rgba(43, 38, 34, 0.16);
+  animation: press 0.1s ease-out;
+}
+
+@keyframes press {
+  from { transform: translateY(-2px); }
+  to   { transform: translateY(0); }
+}
+
+/* ---------- Tile results (flat, printed colours) ---------- */
+.tile.correct {
+  background: #5b7f5e;
+  border-color: #3f5f45;
+  color: #fdfaf3;
+  box-shadow: 2px 2px 0 #3f5f45;
+}
+
+.tile.present {
+  background: #c9973f;
+  border-color: #a87c2a;
+  color: #2b2622;
+  box-shadow: 2px 2px 0 #a87c2a;
+}
+
+.tile.absent {
+  background: #d8cfbf;
+  border-color: #bfb5a4;
+  color: #8f8578;
+  box-shadow: none;
+}
+
+/* ---------- Result card ---------- */
+.message {
+  margin: 2px auto 20px;
+  padding: 15px 22px;
+  max-width: 330px;
+  background: #fffdf7;
+  border: 1.5px dashed #b8ae9d;
+  border-radius: 5px;
+  transform: rotate(-0.7deg);
+}
+
+.message.win { border-color: #5b7f5e; }
+.message.lose { border-color: #c9973f; }
+
+.message-label {
+  display: block;
+  margin-bottom: 6px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #7a7165;
+}
+
+.message p {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
+/* Filled ink button, no gradients. */
+.play-again {
+  padding: 9px 22px;
+  border: 1.5px solid #2b2622;
+  border-radius: 4px;
+  background: #2b2622;
+  color: #fdfaf3;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(43, 38, 34, 0.25);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.play-again:hover { background: #3d3630; }
+
+.play-again:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 rgba(43, 38, 34, 0.25);
+}
+
+/* ---------- Keyboard: little typewriter keys ---------- */
+.keyboard {
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.key {
+  flex: 1;
+  max-width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #2b2622;
+  background: #fffdf7;
+  border: 1.5px solid #b8ae9d;
+  border-radius: 6px;
+  box-shadow: 0 2px 0 #b8ae9d;
+  cursor: pointer;
+  transition: background 0.1s ease, transform 0.06s ease, box-shadow 0.06s ease;
+}
+
+.key:hover { background: #f6f0e3; }
+
+/* The key physically goes down when pressed. */
+.key:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 #b8ae9d;
+}
+
+.key.wide {
+  flex: 1.6;
+  max-width: 68px;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+}
+
+.key.correct {
+  background: #5b7f5e;
+  border-color: #3f5f45;
+  color: #fdfaf3;
+  box-shadow: 0 2px 0 #3f5f45;
+}
+
+.key.present {
+  background: #c9973f;
+  border-color: #a87c2a;
+  color: #2b2622;
+  box-shadow: 0 2px 0 #a87c2a;
+}
+
+.key.absent {
+  background: #e7e0d2;
+  border-color: #d3c9b8;
+  color: #a1988a;
+  box-shadow: 0 2px 0 #d3c9b8;
+}
+
+/* Same push-down when the real keyboard is used. */
+.key.pressed {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+/* ---------- Legend ---------- */
+.legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7a7165;
+}
+
+.legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 2px;
+  border: 1px solid rgba(43, 38, 34, 0.35);
+}
+
+.dot.correct { background: #5b7f5e; }
+.dot.present { background: #c9973f; }
+.dot.absent  { background: #d8cfbf; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 480px) {
+  .app-header h1 { font-size: 2.1rem; }
+
+  .tile {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .key {
+    height: 40px;
+    max-width: 36px;
+    font-size: 0.8rem;
+  }
+
+  .key.wide {
+    max-width: 56px;
+    font-size: 0.55rem;
+  }
+
+  .legend {
+    gap: 10px;
+    font-size: 0.56rem;
+  }
+}
