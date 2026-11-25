@@ -4,25 +4,6 @@ A Wordle clone built with React and Vite. Paper-and-ink theme, ASCII reaction fa
 
 **Author:** Bigyan Tripathi
 
-## How to run the game
-
-1. Open a terminal in the project folder:
-   ```bash
-   cd wordle-react
-   ```
-2. Install the dependencies (only needed the first time):
-   ```bash
-   npm install
-   ```
-3. Start the game:
-   ```bash
-   npm run dev
-   ```
-4. Open the link shown in the terminal, usually:
-   ```
-   http://localhost:5173/
-   ```
-5. To stop the game, press `Ctrl + C` in the terminal.
 
 ## How to play
 
